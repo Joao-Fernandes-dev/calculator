@@ -13,7 +13,25 @@ function divide(a, b){
         return a / b;
     };
 };
- function operate (opr, num1, num2){
+
+let firstNum;
+let secondNum;
+let operator;
+
+let maintainingDisplay = true;
+const display = document.querySelector('.display');
+const digitBtns = document.querySelectorAll('.digit');
+digitBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        if(maintainingDisplay) {
+            display.textContent = '';
+            maintainingDisplay = false;
+        }
+        display.textContent += btn.textContent;
+    });
+});
+
+function operate (opr, num1, num2){
     num1 =+ num1;
     num2 =+ num2;
     switch (opr){
