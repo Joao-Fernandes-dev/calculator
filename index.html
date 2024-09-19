@@ -1,47 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
+    <title>Calculator</title>
 </head>
+
 <body>
     <div class="container">
-        <p class="display">0</p>
-        <div class="button-row">
-            <button class="clear">AC</button>
-            <button class="operator">+</button>
-        </div>
-        <div class="button-row">
-            <button class="digit">7</button>
-            <button class="digit">8</button>
-            <button class="digit">9</button>
-            <button class="operator">-</button>
-        </div>
-        <div class="button-row">
-            <button class="digit">4</button>
-            <button class="digit">5</button>
-            <button class="digit">6</button>
-            <button class="operator">*</button>
-        </div>
-        <div class="button-row">
-            <button class="digit">1</button>
-            <button class="digit">2</button>
-            <button class="digit">3</button>
-            <button class="operator">/</button>
-        </div>
-        <div class="button-row">
-            <button class="decimal">.</button>
-            <button class="digit" id="zero">0</button>
-            <button class="equals">=</button>
-        </div>
+        <div class="screen previous"></div>
+        <div class="screen current"></div>
+        <div class="calculator-buttons">
+            <!-- Top row: AC, +/-, %, ÷ -->
+            <div class="row">
+                <button class="btn clear">AC</button>
+                <button class="btn operator">/</button>
+            </div>
 
 
+            <!-- Row 2: 7, 8, 9, x -->
+            <div class="row">
+                <button class="btn number">7</button>
+                <button class="btn number">8</button>
+                <button class="btn number">9</button>
+                <button class="btn operator">*</button>
+            </div>
+
+
+            <!-- Row 3: 4, 5, 6, - -->
+            <div class="row">
+                <button class="btn number">4</button>
+                <button class="btn number">5</button>
+                <button class="btn number">6</button>
+                <button class="btn operator">-</button>
+            </div>
+
+
+            <!-- Row 4: 1, 2, 3, + -->
+            <div class="row">
+                <button class="btn number">1</button>
+                <button class="btn number">2</button>
+                <button class="btn number">3</button>
+                <button class="btn operator">+</button>
+            </div>
+
+
+            <!-- Row 5: 0, ., = -->
+            <div class="row">
+                <button class="btn number">0</button>
+                <button class="btn decimal">.</button>
+                <button class="btn equal">=</button>
+            </div>
+
+        </div>
     </div>
-
-
-
 </body>
+
 </html>

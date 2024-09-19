@@ -1,49 +1,92 @@
-function add(a, b){
-    return a + b;
-};
-function subtract(a, b){
-    return (a - b);
-};
-function multiply(a ,b){
-    return a * b;
-};
-function divide(a, b){
-    if (b == 0) return "Division by zero is not Allowed";
-    else {
-        return a / b;
-    };
-};
+let operator = "";
+let previousValue = "";
+let currentValue = "";
 
-let firstNum;
-let secondNum;
-let operator;
 
-let maintainingDisplay = true;
-const display = document.querySelector('.display');
-const digitBtns = document.querySelectorAll('.digit');
-digitBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        if(maintainingDisplay) {
-            display.textContent = '';
-            maintainingDisplay = false;
+document.addEventListener("DOMContentLoaded", function(){
+    let clear = document.querySelector(".clear");
+    let equal = document.querySelector(".equal");
+    let decimal = document.querySelector(".decimal");
+
+    let numbers = document.querySelectorAll(".number");
+    let operators = document.querySelectorAll(".operator");
+
+    let previousScreen = document.querySelector(".previous");
+    let currentScreen = document.querySelector(".current");
+
+    numbers.forEach((number) => number.addEventListener("click", function(e){
+        handleNumber(e.target.textContent)
+        currentScreen.textContent = currentValue;
+    }))
+
+    operators.forEach((op) => op.addEventListener("click", function(e){
+        handleOperator(e.target.textContent)
+        previousScreen.textContent = previousValue + " " + operator;
+        currentScreen.textContent = currentValue;
+    }))
+
+    clear.addEventListener("click", function(){
+        previousValue = "";
+        currentValue = "";
+        operaor = "";
+        previousScreen.textContent = currentValue;
+        currentScreen.textContent = currentValue;
+    })
+
+    equal.addEventListener("click", function(){
+        if(currentValue != "" && previousValue != ""){
+            calculate()
+            previousScreen.textContent = "";
+            if(previousValue.length <= 5){
+                currentScreen.textContent = previousValue;
+            } else {
+                currentScreen.textContent = previousValue.slice(0,5) + "...";
+            }
         }
-        display.textContent += btn.textContent;
-    });
-});
+    })
 
-function operate (opr, num1, num2){
-    num1 =+ num1;
-    num2 =+ num2;
-    switch (opr){
-        case '+':
-            return add(num1, num2);
-        case '-':
-           return subtract(num1, num2);
-        case '*':
-            return multiply(num1, num2);
-        case '/':
-            return divide(num1, num2);
-            
+    decimal.addEventListener("click", function(){
+        addDecimal();
+    })
+
+})
+
+function handleNumber(num){
+    if(currentValue.length <= 5){
+        currentValue += num;
     }
+}
 
- }
+function handleOperator(op){
+    operator = op;
+    previousValue = currentValue;
+    currentValue = "";
+}
+
+function calculate(){
+    previousValue = Number(previousValue);
+    currentValue = Number(currentValue);
+
+    if(operator === "+"){
+        previousValue += currentValue;
+    } else if(operator === "-"){
+        previousValue -= currentValue;
+    } else if(operator === "*"){
+        previousValue *= currentValue;
+    } else if(operator === "/"){
+        previousValue /= currentValue;
+    } 
+    preciousValue = roundNumber(previousValue);
+    previousValue = previousValue.toString();
+    currentValue = previousValue.toString();
+}
+
+function roundNumber(num){
+    return Math.round(num * 1000) / 1000;
+}
+
+function addDecimal(){
+    if(!currentValue.includes(".")){
+        currentValue += ".";
+    }
+}
